@@ -1,0 +1,5 @@
+﻿student_id,name,phone,email,course,midterm,lab,oral,bonus,total,notes
+220769,عبدالرحمن خالد سعد الدين,01120844781,abdelrhmannaser06@gmail.com,Comp 304 Compiler Design - Spring,12,15,5,0,32,Score after adding extra bonus
+220770,Sarah Ahmed Mahmoud,+201012345678,sarah.ahmed@example.com,Comp 304 Compiler Design - Spring,14,35,8,2,59,Outstanding lab project
+220771,Mohamed Omar Farouk,01298765432,mohamed.omar@example.com,Comp 304 Compiler Design - Spring,10,28,6,0,44,Solid parser implementation
+220772,Nour Ibrahim Youssef,01555554321,nour.ibrahim@example.com,Comp 304 Compiler Design - Spring,13,32,7,1,53,Excellent presentation

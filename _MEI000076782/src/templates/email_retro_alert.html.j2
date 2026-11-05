@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{{ subject | default("Academic System Notification") }}</title>
+</head>
+<body style="background:#111;padding:30px;font-family: 'Courier New', Courier, monospace;">
+<div style="background: linear-gradient(180deg,#001100 0%, #000 60%);
+            color: #bfffbf; font-family: 'Courier New', Courier, monospace;
+            padding: 22px; border-radius: 10px; border: 2px solid rgba(0,255,120,0.18);
+            box-shadow: 0 0 26px rgba(0,255,120,0.10), inset 0 0 40px rgba(0,20,0,0.6);
+            max-width:720px; line-height:1.45; font-size:14px;
+            background-image: repeating-linear-gradient(transparent, transparent 6px, rgba(0,8,0,0.12) 7px); margin:0 auto;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+        <div style="display:flex; gap:6px; align-items:center;">
+        <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #cfffaa, #00ff66); box-shadow:0 0 10px rgba(0,255,100,0.9); border:1px solid rgba(0,255,100,0.25);"></span>
+        <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:linear-gradient(#88ff88,#00cc44); box-shadow:0 0 6px rgba(0,200,80,0.55); border:1px solid rgba(0,255,100,0.12);"></span>
+        </div>
+
+        <strong style="letter-spacing:1px; color:#eaffdf; font-size:13px;">SYSTEM — ACADEMIC DISPATCH</strong>
+        <span style="flex:1; text-align:right; font-size:12px; color:#bfffbf; opacity:0.9;">{{ student.course }}</span>
+    </div>
+
+    <pre style="margin:0; white-space:pre-wrap; padding:10px 12px; background: linear-gradient(180deg, rgba(0,16,0,0.12), transparent);
+                border-radius:8px; border:1px solid rgba(0,255,120,0.06);
+                box-shadow: inset 0 -10px 40px rgba(0,0,0,0.55); font-size:14px;">
+&gt;&gt;&gt; SYSTEM ACCESS GRANTED
+&gt;&gt;&gt; STUDENT RECORD RETRIEVED...
+--------------------------------------------------
+STUDENT_NAME : {{ student.name }}
+STUDENT_ID   : {{ student.student_id }}
+COURSE       : {{ student.course }}
+--------------------------------------------------
+ASSESSMENT SCORES (AFTER EXTRA BONUS):
+MIDTERM      : {{ student.midterm if student.midterm is not none else '-' }} / {{ student.midterm_max|int }}
+LAB/PRACT    : {{ student.lab if student.lab is not none else '-' }} / {{ student.lab_max|int }}
+ORAL EXAM    : {{ student.oral if student.oral is not none else '-' }} / {{ student.oral_max|int }}
+BONUS POINTS : +{{ student.bonus }}
+--------------------------------------------------
+TOTAL SCORE  : <span style="display:inline-block; padding:4px 10px; border-radius:6px;
+                                background: linear-gradient(180deg,#e6ffd8,#c8ffb0);
+                                color:#002200; font-weight:900; letter-spacing:2px; font-size:15px;
+                                border: 1px solid rgba(0,255,80,0.35);">{{ student.total if student.total is not none else '-' }} / {{ student.total_max|int }}</span>
+--------------------------------------------------
+{% if student.notes %}&gt;&gt;&gt; REMARKS: {{ student.notes }}
+{% endif %}&gt;&gt;&gt; STATUS: TRANSMISSION_CONFIRMED.
+&gt;&gt;&gt; END OF LINE.
+    </pre>
+
+    <div style="margin-top:12px; font-size:12px; color:#9ff59f; opacity:0.95;">
+        <em>Note:</em> This is an automated academic dispatch. Good luck!
+    </div>
+</div>
+</body>
+</html>

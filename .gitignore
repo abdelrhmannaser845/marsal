@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+dist/
+*.egg-info/
+
+# Environment Variables & Secrets
+.env
+*.pem
+*.key
+
+# Runtime artifacts & databases
+*.log
+*.sqlite3
+data/*.db
+PyWhatKit_DB.txt
+
+# Editor / IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Pytest / Coverage
+.pytest_cache/
+.coverage
+htmlcov/

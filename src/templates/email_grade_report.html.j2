@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Grade Report - {{ student.course }}</title>
+</head>
+<body style="margin:0; padding:30px 10px; background-color:#f4f6f8; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#2d3748;">
+  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px; background-color:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+    <!-- Header -->
+    <tr>
+      <td style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 32px 28px; text-align: left; color:#ffffff;">
+        <span style="font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.85; font-weight: 600;">Academic Notification</span>
+        <h1 style="margin: 8px 0 0; font-size: 24px; font-weight: 700;">{{ student.course }}</h1>
+      </td>
+    </tr>
+
+    <!-- Body -->
+    <tr>
+      <td style="padding: 28px;">
+        <p style="font-size: 16px; margin: 0 0 20px;">Dear <strong>{{ student.name }}</strong> (ID: {{ student.student_id }}),</p>
+        <p style="font-size: 14px; line-height: 1.6; color:#4a5568; margin: 0 0 24px;">
+          Your academic evaluation and scores (including any applicable bonus points) have been recorded for this term. Below is your detailed breakdown:
+        </p>
+
+        <!-- Grade Summary Table -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; margin-bottom: 24px;">
+          <thead>
+            <tr style="background-color: #f8fafc; border-bottom: 2px solid #e2e8f0;">
+              <th style="padding: 12px 14px; text-align: left; font-size: 13px; color: #64748b; text-transform: uppercase;">Assessment Component</th>
+              <th style="padding: 12px 14px; text-align: right; font-size: 13px; color: #64748b; text-transform: uppercase;">Max Score</th>
+              <th style="padding: 12px 14px; text-align: right; font-size: 13px; color: #64748b; text-transform: uppercase;">Obtained Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #edf2f7;">
+              <td style="padding: 12px 14px; font-size: 14px;">Midterm Exam</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; color:#64748b;">{{ student.midterm_max|int }}</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; font-weight: 600;">{{ student.midterm if student.midterm is not none else '-' }}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #edf2f7;">
+              <td style="padding: 12px 14px; font-size: 14px;">Lab / Practical</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; color:#64748b;">{{ student.lab_max|int }}</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; font-weight: 600;">{{ student.lab if student.lab is not none else '-' }}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #edf2f7;">
+              <td style="padding: 12px 14px; font-size: 14px;">Oral Exam</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; color:#64748b;">{{ student.oral_max|int }}</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; font-weight: 600;">{{ student.oral if student.oral is not none else '-' }}</td>
+            </tr>
+            {% if student.bonus > 0 %}
+            <tr style="border-bottom: 1px solid #edf2f7; background-color: #f0fdf4;">
+              <td style="padding: 12px 14px; font-size: 14px; color:#166534; font-weight: 600;">Extra Bonus Points</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; color:#166534;">-</td>
+              <td style="padding: 12px 14px; font-size: 14px; text-align: right; font-weight: 700; color:#166534;">+{{ student.bonus }}</td>
+            </tr>
+            {% endif %}
+            <tr style="background-color: #eff6ff; font-weight: 700;">
+              <td style="padding: 14px; font-size: 15px; color:#1e40af;">Total Accumulated Score</td>
+              <td style="padding: 14px; font-size: 15px; text-align: right; color:#1e40af;">{{ student.total_max|int }}</td>
+              <td style="padding: 14px; font-size: 16px; text-align: right; color:#1d4ed8;">{{ student.total if student.total is not none else '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {% if student.notes %}
+        <div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 4px; margin-bottom: 24px;">
+          <strong style="color: #92400e; font-size: 13px;">Instructor Feedback:</strong>
+          <p style="margin: 4px 0 0; font-size: 14px; color: #78350f;">{{ student.notes }}</p>
+        </div>
+        {% endif %}
+
+        <p style="font-size: 13px; color: #64748b; line-height: 1.5; margin: 0;">
+          This is an automated academic dispatch. Please retain this email for your records. If you believe there is an error in calculation, kindly reach out to the department course coordinator.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="background-color: #f8fafc; padding: 20px 28px; text-align: center; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8;">
+        Academic Course Portal &bull; Generated automatically &bull; Good luck!
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

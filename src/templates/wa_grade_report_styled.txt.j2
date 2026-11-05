@@ -1,0 +1,19 @@
+🎓 *Academic Performance Notification*
+
+*Student Name:* {{ student.name }}
+*Student ID:* {{ student.student_id }}
+*Course:* {{ student.course }}
+
+📊 *Score Breakdown (After Extra Bonus):*
+• Midterm: {{ student.midterm if student.midterm is not none else '-' }} / {{ student.midterm_max|int }}
+• Practical Lab: {{ student.lab if student.lab is not none else '-' }} / {{ student.lab_max|int }}
+• Oral Exam: {{ student.oral if student.oral is not none else '-' }} / {{ student.oral_max|int }}
+{% if student.bonus > 0 %}• Extra Bonus: +{{ student.bonus }} pts
+{% endif %}
+🏆 *Total Score:* {{ student.total if student.total is not none else '-' }} / {{ student.total_max|int }}
+
+{% if student.notes %}
+📌 *Instructor Notes:* {{ student.notes }}
+{% endif %}
+_This is a fully automated message. If you notice any discrepancy, please contact your course instructor._
+Good luck! ✨
